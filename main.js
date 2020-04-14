@@ -1,7 +1,7 @@
 const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
 
-const radius = 20;
+let radius = 20;
 const start = 0;
 const end = Math.PI * 2;
 
@@ -34,6 +34,7 @@ const onMouseUp = () => {
   drawing = false;
   context.beginPath();
 };
+
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mousemove", putPoint);
 canvas.addEventListener("mouseup", onMouseUp);
