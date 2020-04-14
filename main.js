@@ -38,6 +38,7 @@ const onMouseUp = () => {
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mousemove", putPoint);
 canvas.addEventListener("mouseup", onMouseUp);
+canvas.addEventListener("mouseleave", onMouseUp);
 
 window.addEventListener("resize", onResize, false);
 
