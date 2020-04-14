@@ -73,3 +73,12 @@ canvas {
   border: 2px solid white;
   box-shadow: inset 0px 1px 2px;
 }
+
+#eraser {
+  border-radius: 10px;
+}
+
+#eraser.active {
+  border-radius: 10px;
+  border: 2px solid rgb(218, 213, 213);
+}

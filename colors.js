@@ -1,8 +1,20 @@
-var colorArray = ["000000", "ffaa33", "aabbcc", "2345ff", "abcdef", "123456"];
+var colorArray = [
+  "000000",
+  "ff6666",
+  "ffbd55",
+  "ffff66",
+  "9de24f",
+  "87cefa",
+  "ffffff",
+];
 for (let i = 0; i < colorArray.length; i++) {
   let swatch = document.createElement("div");
   swatch.className = "swatch";
+  if (colorArray[i] == "ffffff") {
+    swatch.setAttribute("id", "eraser");
+  }
   swatch.style.backgroundColor = "#" + colorArray[i];
+
   document.getElementById("colors").appendChild(swatch);
 }
 
