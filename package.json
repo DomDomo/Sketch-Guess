@@ -1,0 +1,25 @@
+{
+  "name": "sketch-guess",
+  "version": "1.0.0",
+  "description": "Shared canvas drawing game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DomDomo/Sketch-Guess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DomDomo/Sketch-Guess/issues"
+  },
+  "homepage": "https://github.com/DomDomo/Sketch-Guess#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
