@@ -1,7 +1,17 @@
 const express = require("express");
+const socketio = require("socket.io");
+const http = require("http");
+
+const PORT = process.env.PORT || 3000;
+
 const app = express();
-const port = process.env.PORT || 3000;
-const server = app.listen(port);
-console.log(`Running server on ${port}`);
+const server = http.createServer(app);
+const io = socketio(server);
+
+io.on("connection", (socket) => {
+  console.log(`New user has joined with the id of: ${socket.id}`);
+});
 
 app.use(express.static(__dirname + "/public"));
+
+server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));

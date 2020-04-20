@@ -1,5 +1,6 @@
 const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
+const socket = io();
 
 let radius = 20;
 const start = 0;
