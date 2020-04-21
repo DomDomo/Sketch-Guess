@@ -19,8 +19,7 @@ for (let i = 0; i < colorArray.length; i++) {
 }
 
 const setColor = (color) => {
-  context.fillStyle = color;
-  context.strokeStyle = color;
+  current.color = color;
   let active = document.getElementsByClassName("active")[0];
   if (active) {
     active.className = "swatch";

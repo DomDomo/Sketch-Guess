@@ -11,8 +11,8 @@ const io = socketio(server);
 io.on("connection", (socket) => {
   console.log(`New user has joined with the id of: ${socket.id}`);
 
-  socket.on("draw", (data) => {
-    socket.broadcast.emit("draw", data);
+  socket.on("drawing", (data) => {
+    socket.broadcast.emit("drawing", data);
   });
 });
 
