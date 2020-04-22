@@ -7,7 +7,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    
+    <div id="toolbar">
+      <div id="rad">
+        <p>Radius:&nbsp;</p>
+        <span id="radval"></span>
+        <div id="incrad" class="radcontrol">+</div>
+        <div id="decrad" class="radcontrol">-</div>
+      </div>
+      <div id="colors"></div>
+    </div>
+    <canvas></canvas>
     <script src="/socket.io/socket.io.js"></script>
     <script src="main.js"></script>
     <script src="radius.js"></script>
