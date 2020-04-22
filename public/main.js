@@ -74,7 +74,7 @@ function onMouseUp(event) {
   );
 }
 
-function onMouseMove(e) {
+function onMouseMove(event) {
   if (!drawing) {
     return;
   }
