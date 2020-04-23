@@ -1,3 +1,6 @@
-document.getElementById('partyButton').addEventListener('click', function() {
-    document.querySelector('popup').style.display = 'flex';
-})
+document.getElementById('partyButton').addEventListener('click', showPopup);
+
+function showPopup() {
+    document.getElementsByClassName('popup')[0].style.display = 'flex';
+}
+
