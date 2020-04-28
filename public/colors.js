@@ -8,8 +8,8 @@ var colorArray = [
   "ffffff",
 ];
 for (let i = 0; i < colorArray.length; i++) {
-  let swatch = document.createElement("div");
-  swatch.className = "swatch";
+  let swatch = document.createElement("button");
+  swatch.className = "swatch btn btn-secondary my-2 my-sm-0";
   if (colorArray[i] == "ffffff") {
     swatch.setAttribute("id", "eraser");
   }
@@ -22,7 +22,7 @@ const setColor = (color) => {
   current.color = color;
   let active = document.getElementsByClassName("active")[0];
   if (active) {
-    active.className = "swatch";
+    active.className = "swatch btn btn-secondary my-2 my-sm-0";
   }
 };
 

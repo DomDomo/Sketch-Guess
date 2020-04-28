@@ -1,4 +1,5 @@
 const canvas = document.querySelector("canvas");
+const canvasDiv = document.querySelector("canvas").parentElement;
 const context = canvas.getContext("2d");
 const socket = io();
 
@@ -20,8 +21,8 @@ canvas.addEventListener("mouseout", onMouseUp);
 socket.on("drawing", onDrawingEvent);
 
 const onResize = () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = canvasDiv.offsetWidth;
+  canvas.height = canvasDiv.offsetHeight;
   context.lineWidth = radius * 2;
 };
 
@@ -29,6 +30,7 @@ window.addEventListener("resize", onResize, false);
 onResize();
 
 function drawLine(x0, y0, x1, y1, color, emit) {
+  console.log("Currnet location: " + x0 + " " + y0);
   context.beginPath();
   context.moveTo(x0, y0);
   context.lineTo(x1, y1);
@@ -75,6 +77,7 @@ function onMouseUp(event) {
 }
 
 function onMouseMove(event) {
+  console.log("Currnet location: " + event.clientX + " " + event.clientY);
   if (!drawing) {
     return;
   }
