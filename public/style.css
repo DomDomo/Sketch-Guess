@@ -1,84 +1,34 @@
-* {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  font-family: sans-serif;
+::-webkit-scrollbar {
+  width: 5px;
 }
 
-html,
-body {
-  margin: 0 !important;
-  padding: 0 !important;
+::-webkit-scrollbar-track {
+  width: 5px;
+  background: #f5f5f5;
 }
 
-body {
-  background-color: royalblue;
+::-webkit-scrollbar-thumb {
+  width: 1em;
+  background-color: #ddd;
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
 }
 
-canvas {
-  background-color: rgb(255, 255, 255);
-  display: block;
+.text-small {
+  font-size: 0.9rem;
 }
 
-#toolbar {
-  display: flex;
-  width: 100%;
-  height: 70px;
-  font-size: 1.3rem;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  background-color: #2f2f2f;
-  color: white;
+.messages-box,
+.chat-box {
+  height: 510px;
+  overflow-y: scroll;
 }
 
-#rad {
-  display: flex;
-  align-items: center;
-  float: left;
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
-.radcontrol {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  margin: 0 5px;
-  background-color: #4f4f4f;
-  text-align: center;
-  line-height: 30px;
-}
-
-.radcontrol:hover {
-  cursor: pointer;
-  background-color: #686565;
-}
-
-#colors {
-  display: flex;
-  margin-left: auto;
-  text-align: center;
-  align-items: center;
-}
-
-.swatch {
-  text-align: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  margin-left: 10px;
-  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5),
-    0px 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-.swatch.active {
-  border: 3px solid black;
-  box-shadow: inset 0px 1px 2px;
-}
-
-#eraser {
-  border-radius: 10px;
-}
-
-#eraser.active {
-  border-radius: 10px;
-  border: 2px solid rgb(218, 213, 213);
+input::placeholder {
+  font-size: 0.9rem;
+  color: #999;
 }

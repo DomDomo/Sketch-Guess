@@ -10,6 +10,12 @@ const io = socketio(server);
 
 io.on("connection", (socket) => {
   console.log(`New user has joined with the id of: ${socket.id}`);
+  socket.emit("chat-message", "Hello World");
+
+  socket.on("send-chat-message", (message) => {
+    console.log(message);
+    io.sockets.emit("chat-message", message);
+  });
 
   socket.on("drawing", (data) => {
     socket.broadcast.emit("drawing", data);
