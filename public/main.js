@@ -3,6 +3,7 @@ const canvasDiv = document.querySelector("canvas").parentElement;
 const context = canvas.getContext("2d");
 const socket = io();
 
+let rect = undefined;
 let radius = 20;
 const start = 0;
 const end = Math.PI * 2;
@@ -24,6 +25,7 @@ const onResize = () => {
   canvas.width = canvasDiv.offsetWidth;
   canvas.height = canvasDiv.offsetHeight;
   context.lineWidth = radius * 2;
+  rect = canvas.getBoundingClientRect();
 };
 
 window.addEventListener("resize", onResize, false);
@@ -57,8 +59,8 @@ function drawLine(x0, y0, x1, y1, color, emit) {
 
 function onMouseDown(event) {
   drawing = true;
-  current.x = event.clientX || event.touches[0].clientX;
-  current.y = event.clientY || event.touches[0].clientY;
+  current.x = event.pageX - rect.x || event.touches[0].clientX;
+  current.y = event.pageY - rect.y || event.touches[0].clientY;
 }
 
 function onMouseUp(event) {
@@ -69,28 +71,30 @@ function onMouseUp(event) {
   drawLine(
     current.x,
     current.y,
-    event.clientX || event.touches[0].clientX,
-    event.clientY || event.touches[0].clientY,
+    event.pageX - rect.x || event.touches[0].clientX,
+    event.pageY - rect.y || event.touches[0].clientY,
     current.color,
     true
   );
 }
 
 function onMouseMove(event) {
-  console.log("Currnet location: " + event.clientX + " " + event.clientY);
+  console.log(
+    "Currnet location: " + event.pageX - rect.x + " " + event.pageY - rect.y
+  );
   if (!drawing) {
     return;
   }
   drawLine(
     current.x,
     current.y,
-    event.clientX || event.touches[0].clientX,
-    event.clientY || event.touches[0].clientY,
+    event.pageX - rect.x || event.touches[0].clientX,
+    event.pageY - rect.y || event.touches[0].clientY,
     current.color,
     true
   );
-  current.x = event.clientX || event.touches[0].clientX;
-  current.y = event.clientY || event.touches[0].clientY;
+  current.x = event.pageX - rect.x || event.touches[0].clientX;
+  current.y = event.pageY - rect.y || event.touches[0].clientY;
 }
 
 function onColorUpdate(event) {
