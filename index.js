@@ -8,6 +8,10 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
+app.get("/", (req, res) => {
+  res.sendFile(`${__dirname}/public/index.html`);
+});
+
 io.on("connection", (socket) => {
   console.log(`New user has joined with the id of: ${socket.id}`);
 

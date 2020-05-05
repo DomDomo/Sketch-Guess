@@ -1,3 +1,5 @@
+import { socket } from "./script.js";
+
 const messageForm = document.getElementById("send-container");
 const messageInput = document.getElementById("message-input");
 const chatBox = document.getElementById("chat-box");
