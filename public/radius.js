@@ -18,7 +18,6 @@ const setRadius = (rad, interval = 0) => {
   }
   radius = newRadius;
   context.lineWidth = radius * 2;
-  current.lineWidth = radius * 2;
 
   radElem.innerHTML = radius;
 };

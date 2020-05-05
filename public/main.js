@@ -31,12 +31,12 @@ const onResize = () => {
 window.addEventListener("resize", onResize, false);
 onResize();
 
-function drawLine(x0, y0, x1, y1, color, emit) {
+function drawLine(x0, y0, x1, y1, color, emit, radius) {
   context.beginPath();
   context.moveTo(x0, y0);
   context.lineTo(x1, y1);
   context.strokeStyle = color;
-  context.lineWidth = current.lineWidth;
+  context.lineWidth = radius;
   context.lineCap = "round";
   context.stroke();
   context.closePath();
@@ -53,6 +53,7 @@ function drawLine(x0, y0, x1, y1, color, emit) {
     x1: x1 / myCanvasWidth,
     y1: y1 / myCanvasHeight,
     color: color,
+    radius: current.radius,
   });
 }
 
@@ -73,7 +74,8 @@ function onMouseUp(event) {
     event.pageX - rect.x || event.touches[0].clientX,
     event.pageY - rect.y || event.touches[0].clientY,
     current.color,
-    true
+    true,
+    current.radius
   );
 }
 
@@ -87,7 +89,8 @@ function onMouseMove(event) {
     event.pageX - rect.x || event.touches[0].clientX,
     event.pageY - rect.y || event.touches[0].clientY,
     current.color,
-    true
+    true,
+    current.radius
   );
   current.x = event.pageX - rect.x || event.touches[0].clientX;
   current.y = event.pageY - rect.y || event.touches[0].clientY;
@@ -105,7 +108,8 @@ function onDrawingEvent(data) {
     data.y0 * myCanvasHeight,
     data.x1 * myCanvasWidth,
     data.y1 * myCanvasHeight,
-    data.color
+    data.color,
+    data.radius
   );
 }
 
