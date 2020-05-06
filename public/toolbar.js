@@ -1,10 +1,24 @@
 export class Toolbar {
-  _Colors = ["#fff", "#c1c1c1", "#ef130b", "#ff7100", "#ffe400"];
+  _Colors = [
+    "#fff",
+    "#ef130b",
+    "#ff7100",
+    "#ffe400",
+    "#00cc00",
+    "#00b2ff",
+    "#231fd3",
+    "#000",
+  ];
 
-  constructor(toolbarDiv) {
+  constructor(toolbarDiv, canvas) {
     this.toolbarDiv = toolbarDiv;
+    this.canvas = canvas;
 
     this.containerColorColumn = this._makeColorColumn(this.toolbarDiv);
+    this.containerBrushSizes = document.getElementsByClassName(
+      "containerBrushSizes"
+    )[0];
+    this.containerBrushSizes = this._addBrushSizes(this.containerBrushSizes);
   }
 
   _makeColorColumn(toolbarDiv) {
@@ -14,8 +28,6 @@ export class Toolbar {
 
     this._addColorItems(colorColumn);
 
-    console.log(colorColumn);
-
     return colorColumn;
   }
 
@@ -24,8 +36,21 @@ export class Toolbar {
       let colorElem = document.createElement("div");
       colorElem.setAttribute("class", "colorItem");
       colorElem.style.backgroundColor = color;
+      colorElem.addEventListener("click", () => {
+        canvas.setNewColor(color);
+      });
 
       colorColumn.appendChild(colorElem);
+    });
+  }
+
+  _addBrushSizes(containerBrushSizes) {
+    let thickness = 5;
+    containerBrushSizes.querySelectorAll(".brushSize").forEach((brushSize) => {
+      brushSize.addEventListener("click", () => {
+        let multiplier = brushSize.getAttribute("data-size");
+        canvas.setNewThickness(50 * multiplier + 5);
+      });
     });
   }
 }

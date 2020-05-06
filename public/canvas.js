@@ -131,4 +131,11 @@ export class Canvas {
       data.thickness
     );
   }
+
+  setNewColor(newColor) {
+    this.color = newColor;
+  }
+  setNewThickness(newThickness) {
+    this.thickness = newThickness;
+  }
 }

@@ -94,3 +94,45 @@
   justify-content: center;
   align-items: center;
 }
+
+#containerSidebar {
+  position: relative;
+  margin-left: 8px;
+  width: 340px;
+  min-width: 340px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#containerChat {
+  height: 64px;
+  padding: 4px;
+  flex: 1 0 auto;
+  border-radius: 2px;
+}
+
+#boxChat {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+#boxChatInput {
+  height: 34px;
+}
+
+#boxMessages {
+  height: calc(100% - 34px);
+  overflow-y: auto;
+}
+
+#boxMessages p {
+  padding: 3px;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+#boxMessages p:nth-child(even) {
+  background: #fafafa;
+}

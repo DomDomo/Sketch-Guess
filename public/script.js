@@ -12,7 +12,7 @@ socket.on("connect", () => {
   console.log("🌍 Connected to server");
 
   const canvas = new Canvas(canvasDiv, socket);
-  const toolbar = new Toolbar(toolbarDiv);
+  const toolbar = new Toolbar(toolbarDiv, canvas);
 
   window.canvas = canvas;
   window.toolbar = toolbar;

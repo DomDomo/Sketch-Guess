@@ -61,6 +61,10 @@
       .containerColorColumn .colorItem:hover {
         border: 2px solid #000;
       }
+
+      #containerChat {
+        height: 55vh;
+      }
     </style>
 
     <title>Sketch-Guess</title>
@@ -68,7 +72,7 @@
   <body>
     <div class="nav-scroller py-1 mb-2">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Radius</a>
+        <a class="navbar-brand" href="#">Sketch-Guess</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -80,20 +84,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor02">
-          <ul class="navbar-nav mr-auto" id="colors">
-            <li class="nav-item active">
-              <a id="radval">Radius Value</a>
-            </li>
-            <li class="nav-item radcontrol" id="incrad">
-              <a class="nav-link" href="#">+</a>
-            </li>
-            <li class="nav-item radcontrol" id="decrad">
-              <a class="nav-link" href="#">-</a>
-            </li>
-          </ul>
-        </div>
       </nav>
     </div>
     <main role="main" class="container">
@@ -102,44 +92,6 @@
           <h3 class="pb-3 mb-4 font-italic border-bottom">Canvas</h3>
           <div id="canvasDiv"></div>
           <div id="toolbarDiv">
-            <div class="containerColorColumn">
-              <div class="colorItem" data-color="0" style="background: #fff;"></div>
-              <div
-                class="colorItem"
-                data-color="2"
-                style="background: #c1c1c1;"
-              ></div>
-              <div
-                class="colorItem"
-                data-color="4"
-                style="background: #ef130b;"
-              ></div>
-              <div
-                class="colorItem"
-                data-color="6"
-                style="background: #ff7100;"
-              ></div>
-              <div
-                class="colorItem"
-                data-color="8"
-                style="background: #ffe400;"
-              ></div>
-              <div
-                class="colorItem"
-                data-color="10"
-                style="background: #00cc00;"
-              ></div>
-              <div
-                class="colorItem"
-                data-color="12"
-                style="background: #00b2ff;"
-              ></div>
-              <div
-                class="colorItem"
-                data-color="14"
-                style="background: #231fd3;"
-              ></div>
-            </div>
             <div class="containerBrushSizes">
               <div class="brushSize" data-size="0">
                 <div class="sizeCenter">
@@ -168,24 +120,27 @@
         <aside class="col-md-4" style="height: 500px;">
           <h3 class="pb-3 mb-4 font-italic border-bottom">Chat</h3>
           <!-- Chat Box-->
-          <div id="chat-box">
+          <div id="containerChat">
+            <div id="boxChat">
+              <div id="boxMessages">
+                <p style="color: rgb(0, 0, 0); background-color: darkgray">Aron dude</p>
+                <p style="color: rgb(0, 0, 0); background-color: grey">Aron dudedddddd</p>
 
-          </div>
-
-
-          <form id="send-container"class="input-group mb-3">
-            <input
-              type="text"
-              autocomplete="off"
-              id="message-input"
-              class="form-control"
-              placeholder="Guess the sketch!"
-              aria-describedby="basic-addon2"
-            />
-            <div class="input-group-append">
-              <button class="btn btn-secondary" type="submit">Send</button>
+              </div>
+              <div id="boxChatInput">
+                <form id="formChat" action="">
+                  <input
+                    class="form-control"
+                    id="inputChat"
+                    autocomplete="off"
+                    type="text"
+                    placeholder="Type your guess here..."
+                    maxlength="100"
+                  />
+                </form>
+              </div>
             </div>
-          </form>
+          </div>
         </aside>
       <!-- /.row -->
     </main>
@@ -194,9 +149,6 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="script.js"></script>
-    <script src="main.js"></script>
-    <script src="radius.js"></script>
-    <script src="colors.js"></script>
     <script type="module" src="chat.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
