@@ -23,7 +23,43 @@
       }
       #canvasDiv {
         width: 100%;
-        height: 500px;
+        height: 30vw;
+      }
+      #toolbarDiv {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 4vw;
+        margin-top: 8px;
+      }
+
+      #toolbarDiv.colorItem {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        flex: 0 0 auto;
+      }
+
+      .containerColorColumn {
+        height: auto;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+
+      .containerColorColumn .colorItem {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        flex: 0 0 auto;
+      }
+
+      .containerColorColumn .colorItem:active,
+      .containerColorColumn .colorItem:hover {
+        border: 2px solid #000;
       }
     </style>
 
@@ -64,7 +100,68 @@
       <div class="row">
         <div class="col-md-8">
           <h3 class="pb-3 mb-4 font-italic border-bottom">Canvas</h3>
-          <div id="canvasDiv">
+          <div id="canvasDiv"></div>
+          <div id="toolbarDiv">
+            <div class="containerColorColumn">
+              <div class="colorItem" data-color="0" style="background: #fff;"></div>
+              <div
+                class="colorItem"
+                data-color="2"
+                style="background: #c1c1c1;"
+              ></div>
+              <div
+                class="colorItem"
+                data-color="4"
+                style="background: #ef130b;"
+              ></div>
+              <div
+                class="colorItem"
+                data-color="6"
+                style="background: #ff7100;"
+              ></div>
+              <div
+                class="colorItem"
+                data-color="8"
+                style="background: #ffe400;"
+              ></div>
+              <div
+                class="colorItem"
+                data-color="10"
+                style="background: #00cc00;"
+              ></div>
+              <div
+                class="colorItem"
+                data-color="12"
+                style="background: #00b2ff;"
+              ></div>
+              <div
+                class="colorItem"
+                data-color="14"
+                style="background: #231fd3;"
+              ></div>
+            </div>
+            <div class="containerBrushSizes">
+              <div class="brushSize" data-size="0">
+                <div class="sizeCenter">
+                  <div class="size size6"></div>
+                </div>
+              </div>
+              <div class="brushSize" data-size="0.15">
+                <div class="sizeCenter">
+                  <div class="size size16"></div>
+                </div>
+              </div>
+              <div class="brushSize" data-size="0.45">
+                <div class="sizeCenter">
+                  <div class="size size30"></div>
+                </div>
+              </div>
+              <div class="brushSize" data-size="1">
+                <div class="sizeCenter">
+                  <div class="size size44"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

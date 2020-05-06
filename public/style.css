@@ -14,21 +14,83 @@
   border-radius: 1rem;
 }
 
-.text-small {
-  font-size: 0.9rem;
+.containerBrushSizes {
+  display: flex;
 }
 
-.messages-box,
-.chat-box {
-  height: 510px;
-  overflow-y: scroll;
+.containerBrushSizes .brushSize {
+  position: relative;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  background-color: #fff;
+  margin-left: 4px;
+  cursor: pointer;
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
+.containerBrushSizes .brushSize:hover {
+  background-color: #d3d3d3;
 }
 
-input::placeholder {
-  font-size: 0.9rem;
-  color: #999;
+.containerBrushSizes .sizeCenter {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+}
+
+.containerBrushSizes .size {
+  position: absolute;
+  background-color: #000;
+}
+
+.containerBrushSizes .size6 {
+  left: -3px;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.containerBrushSizes .size16 {
+  left: -8px;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
+
+.containerBrushSizes .size30 {
+  left: -15px;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.containerBrushSizes .size44 {
+  left: -22px;
+  top: -22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+}
+
+.containerTools {
+  display: flex;
+  margin-right: 8px;
+}
+
+.containerTools .tool {
+  cursor: pointer;
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  background-color: #fff;
+  border-radius: 2px;
+  margin-right: 4px;
+  filter: grayscale();
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
