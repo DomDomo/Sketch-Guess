@@ -149,3 +149,13 @@ canvas {
   text-align: center;
   color: yellow;
 } */
+
+button {
+  width: 25%;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+#playBtn {
+  margin-bottom: 75px;
+}
