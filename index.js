@@ -15,7 +15,7 @@ let currentState = {
 };
 
 app.get("/", (req, res) => {
-  res.sendFile(`${__dirname}/public/draw.html`);
+  res.sendFile(`${__dirname}/public/index.html`);
 });
 
 io.on("connection", (socket) => {
@@ -28,6 +28,13 @@ io.on("connection", (socket) => {
     }
     socket.broadcast.emit("user_connected", name);
     io.to(socket.id).emit("you_joined");
+  });
+
+  // User Logged in
+  socket.on('login', (name) => {
+    console.log('login', name)
+    // Map socket.id to the name
+    users[socket.id] = name;
   });
 
   socket.on("send-chat-message", (message) => {
@@ -70,3 +77,4 @@ io.on("connection", (socket) => {
 app.use(express.static(__dirname + "/public"));
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
+
