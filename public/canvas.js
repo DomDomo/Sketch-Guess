@@ -41,6 +41,15 @@ export class Canvas {
     return canvas;
   }
 
+  _resizeCanvas() {
+    const { canvas, canvasDiv } = this;
+
+    canvas.width = canvasDiv.offsetWidth;
+    canvas.height = canvasDiv.offsetHeight;
+
+    this.rect = this.canvas.getBoundingClientRect();
+  }
+
   drawLine(x0, y0, x1, y1, color, thickness, emit = false) {
     this.context.beginPath();
     this.context.moveTo(x0, y0);
@@ -94,15 +103,6 @@ export class Canvas {
       this.thickness,
       true
     );
-  }
-
-  _resizeCanvas() {
-    const { canvas, canvasDiv } = this;
-
-    canvas.width = canvasDiv.offsetWidth;
-    canvas.height = canvasDiv.offsetHeight;
-
-    this.rect = this.canvas.getBoundingClientRect();
   }
 
   _sendDrawingData(x0, y0, x1, y1, color, thickness) {
