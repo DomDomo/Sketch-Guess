@@ -12,6 +12,8 @@ export class Canvas {
     this.thickness = thickness;
     this.dragging = false;
 
+    this.myTurn = false;
+
     this.rect = this.canvas.getBoundingClientRect();
     this.x = undefined;
     this.y = undefined;
@@ -24,17 +26,17 @@ export class Canvas {
     );
     this.canvas.addEventListener("mouseup", (event) => this._mouseUp(event));
 
-    this._resizeCanvas();
-
     const self = this;
     window.addEventListener("resize", () => self._resizeCanvas());
+
+    this._resizeCanvas();
   }
 
   _makeCanvas(canvasDiv) {
     const canvas = document.createElement("canvas");
     canvas.setAttribute("id", "canvas");
-    canvas.setAttribute("height", this.canvasDiv.offsetWidth);
-    canvas.setAttribute("width", this.canvasDiv.offsetHeight);
+    canvas.setAttribute("height", this.canvasDiv.offsetHeight);
+    canvas.setAttribute("width", this.canvasDiv.offsetWidth);
     canvas.style.backgroundColor = "white";
     canvasDiv.appendChild(canvas);
 
@@ -48,6 +50,18 @@ export class Canvas {
     canvas.height = canvasDiv.offsetHeight;
 
     this.rect = this.canvas.getBoundingClientRect();
+    //this.clearCanvas(true);
+  }
+
+  clearCanvas(emit = false) {
+    this.context.clearRect(
+      0,
+      0,
+      this.canvasDiv.offsetWidth,
+      this.canvasDiv.offsetHeight
+    );
+
+    if (emit) this.socket.emit("clear_canvas");
   }
 
   drawLine(x0, y0, x1, y1, color, thickness, emit = false) {
@@ -68,11 +82,11 @@ export class Canvas {
   _mouseDown(event) {
     this.dragging = true;
     this.x = event.pageX - this.rect.x;
-    this.y = event.pageY - this.rect.y;
+    this.y = event.pageY - this.rect.y - window.scrollY;
   }
 
   _mouseMove(event) {
-    if (!this.dragging) {
+    if (!this.dragging || !this.myTurn) {
       return;
     }
 
@@ -80,17 +94,17 @@ export class Canvas {
       this.x,
       this.y,
       event.pageX - this.rect.x,
-      event.pageY - this.rect.y,
+      event.pageY - this.rect.y - window.scrollY,
       this.color,
       this.thickness,
       true
     );
     this.x = event.pageX - this.rect.x;
-    this.y = event.pageY - this.rect.y;
+    this.y = event.pageY - this.rect.y - window.scrollY;
   }
 
   _mouseUp(event) {
-    if (!this.dragging) {
+    if (!this.dragging || !this.myTurn) {
       return;
     }
     this.dragging = false;
@@ -98,7 +112,7 @@ export class Canvas {
       this.x,
       this.y,
       event.pageX - this.rect.x,
-      event.pageY - this.rect.y,
+      event.pageY - this.rect.y - window.scrollY,
       this.color,
       this.thickness,
       true
@@ -137,5 +151,14 @@ export class Canvas {
   }
   setNewThickness(newThickness) {
     this.thickness = newThickness;
+  }
+  initiateTurn() {
+    this.myTurn = true;
+    this.dragging = false;
+  }
+  revokeCanvasAcces() {
+    this.myTurn = false;
+    this.dragging = false;
+    this.clearCanvas(true);
   }
 }

@@ -65,6 +65,13 @@
       #containerChat {
         height: 55vh;
       }
+
+      div.btn-group {
+        margin: 0 auto; 
+        text-align: center;
+        width: inherit;
+        display: inline-block;
+      }
     </style>
 
     <title>Sketch-Guess</title>
@@ -91,7 +98,7 @@
         <div class="col-md-8">
           <h3 class="pb-3 mb-4 font-italic border-bottom">Canvas</h3>
           <div id="canvasDiv"></div>
-          <div id="toolbarDiv">
+          <div class="mt-4" id="toolbarDiv">
             <div class="containerBrushSizes">
               <div class="brushSize" data-size="0">
                 <div class="sizeCenter">
@@ -115,9 +122,16 @@
               </div>
             </div>
           </div>
+          <div id="wordChoiceBox" class="btn-group btn-group-lg mt-4" role="group" aria-label="Basic example" style="display: none;">
+            <h3>Choose a word!</h3>
+            <button type="button" class="btn btn-danger">Block level button</button>
+            <button type="button" class="btn btn-warning">Block level button</button>
+            <button type="button" class="btn btn btn-info">Block level button</button>
+          </div>
+          
         </div>
 
-        <aside class="col-md-4" style="height: 500px;">
+        <aside class="col-md-4" style="height: 200px;">
           <h3 class="pb-3 mb-4 font-italic border-bottom">Chat</h3>
           <!-- Chat Box-->
           <div id="containerChat">

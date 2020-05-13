@@ -24,27 +24,31 @@ export class Chat {
 
   _setupSocket(socket) {
     socket.on("chat-message", (data) => {
-      this._appendMessage(data, false, false);
+      this._regularMessage(data);
     });
 
     socket.on("user_connected", (name) => {
-      this._appendMessage({ name: name }, true, false);
+      this._joinMessage({ name: name });
     });
     socket.on("user_disconnected", (name) => {
-      this._appendMessage({ name: name }, false, true);
+      this._leftMessage({ name: name });
     });
 
     socket.on("you_joined", () => {
-      this._appendMessage({ name: "You" }, true, false);
+      this._joinMessage({ name: "You" });
     });
 
-    socket.on("new_user", (data) => {
-      console.log("Hello");
-      this._appendMessage(data, true, false);
+    socket.on("correct_guess", (data) => {
+      this._correctGuessMessage(data);
     });
   }
 
-  _appendMessage(data, userJoining = false, userLeaving = false) {
+  _appendMessage(messageElement) {
+    boxMessages.append(messageElement);
+    messageElement.scrollTo = boxMessages.scrollHeight;
+  }
+
+  _makeMessageTemplate(data) {
     let messageElement = document.createElement("p");
     messageElement.style.color = "black";
     messageElement.style.backgroundColor = this.colorToggle
@@ -55,17 +59,34 @@ export class Chat {
     nameElement.innerText = data.name;
     messageElement.appendChild(nameElement);
 
-    if (userJoining) {
-      messageElement.innerHTML = messageElement.innerHTML + " joined";
-      messageElement.style.color = "green";
-    } else if (userLeaving) {
-      messageElement.innerHTML = messageElement.innerHTML + " left";
-      messageElement.style.color = "red";
-    } else {
-      messageElement.innerHTML = messageElement.innerHTML + ": " + data.message;
-    }
+    return messageElement;
+  }
 
-    boxMessages.append(messageElement);
-    messageElement.scrollTo = boxMessages.scrollHeight;
+  _regularMessage(data) {
+    let messageElement = this._makeMessageTemplate(data);
+    messageElement.innerHTML = messageElement.innerHTML + ": " + data.message;
+    this._appendMessage(messageElement);
+  }
+
+  _joinMessage(data) {
+    let messageElement = this._makeMessageTemplate(data);
+    messageElement.innerHTML = messageElement.innerHTML + " joined";
+    messageElement.style.color = "green";
+    this._appendMessage(messageElement);
+  }
+
+  _leftMessage(data) {
+    let messageElement = this._makeMessageTemplate(data);
+    messageElement.innerHTML = messageElement.innerHTML + " left";
+    messageElement.style.color = "red";
+    this._appendMessage(messageElement);
+  }
+
+  _correctGuessMessage(data) {
+    let messageElement = this._makeMessageTemplate(data);
+    messageElement.innerHTML = messageElement.innerHTML + " got that it was  ";
+    messageElement.innerHTML = `${messageElement.innerHTML} got that it was  <b>${data.word}<b>`;
+    messageElement.style.color = "blue";
+    this._appendMessage(messageElement);
   }
 }
