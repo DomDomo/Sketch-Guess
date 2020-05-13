@@ -84,7 +84,6 @@ export class Chat {
 
   _correctGuessMessage(data) {
     let messageElement = this._makeMessageTemplate(data);
-    messageElement.innerHTML = messageElement.innerHTML + " got that it was  ";
     messageElement.innerHTML = `${messageElement.innerHTML} got that it was  <b>${data.word}<b>`;
     messageElement.style.color = "blue";
     this._appendMessage(messageElement);

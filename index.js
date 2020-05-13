@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
   socket.on("new_user", (name) => {
     if (name) users[socket.id] = name;
     console.log(users);
-    if (Object.keys(users).length >= 1) {
+    if (Object.keys(users).length >= 4) {
       io.to(socket.id).emit("game_start");
     }
     socket.broadcast.emit("user_connected", name);
