@@ -18,9 +18,11 @@ const wordChoiceBox = document.getElementById("wordChoiceBox");
 
 socket.on("connect", () => {
   // At this point we have connected to the server
-  const name = prompt("What is your name?");
+  $('#usernameModal').modal('show');
 
-  socket.emit("new_user", name);
+
+
+  
 
   const canvas = new Canvas(canvasDiv, socket);
   const toolbar = new Toolbar(toolbarDiv, canvas);
