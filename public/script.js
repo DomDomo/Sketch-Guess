@@ -18,7 +18,7 @@ const wordChoiceBox = document.getElementById("wordChoiceBox");
 
 socket.on("connect", () => {
   // At this point we have connected to the server
-  $('#usernameModal').modal('show');
+  //$('#usernameModal').modal('show');
 
 
 
@@ -47,4 +47,18 @@ socket.on("connect", () => {
   };
 });
 
-window.addEventListener("load", () => {});
+//Username setup stuff
+
+window.addEventListener("load", () => {
+  const playBtn = document.getElementById('playBtn');
+  const usernameInput = document.getElementById('usernameInput');
+
+
+  playBtn.addEventListener('click', function(event) {
+    console.log('User enterer name');
+    event.preventDefault();
+    let name = usernameInput.value;
+    socket.emit('new_user', name);
+    name = '';
+  })
+});
