@@ -24,13 +24,13 @@ io.on("connection", (socket) => {
   socket.on("new_user", (name) => {
     console.log(`New username chosen by user with the id of: ${socket.id}`);
     //Check if username is taken
-    for (var key in users) {
-      if (users.hasOwnProperty(key)) {
-        
-      }
+    
+    var isUsernameTaken = false;
+    if(Object.values(users).includes(name)){
+      isUsernameTaken = true;
     }
 
-    if(name && false){
+    if(name && isUsernameTaken){
       //Show username not available error
 
       console.log('Username taken...')
@@ -38,6 +38,8 @@ io.on("connection", (socket) => {
       users[socket.id] = name;
       console.log('User added to active successfully');
       //Show draw elements
+      io.to(socket.id).emit("show_game");
+
       socket.broadcast.emit("user_connected", name);
       io.to(socket.id).emit("you_joined");
       //Are there enough players to start the game

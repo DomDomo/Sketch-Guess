@@ -42,6 +42,12 @@ socket.on("connect", () => {
     canvas.clearCanvas();
   });
 
+  socket.on("show_game", () => {
+    document.getElementById("menuContainer").classList.remove("showFlex");
+    document.getElementById("menuContainer").classList.add("hidden");
+    document.getElementById("gameContainer").classList.remove("hidden");
+  });
+
   window.onscroll = function (event) {
     canvas.rect = canvasDiv.getBoundingClientRect();
   };
@@ -55,7 +61,7 @@ window.addEventListener("load", () => {
 
 
   playBtn.addEventListener('click', function(event) {
-    console.log('User enterer name');
+    console.log('User entered name');
     event.preventDefault();
     let name = usernameInput.value;
     socket.emit('new_user', name);

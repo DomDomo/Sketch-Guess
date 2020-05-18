@@ -139,11 +139,11 @@
 
 /* Shown by default menu */
 
-.hiddenDefault {
+.hidden {
   display: none;
 }
 
-.shownDefault {
+.showFlex {
   display: flex;
 }
 
