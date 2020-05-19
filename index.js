@@ -1,6 +1,7 @@
 const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
@@ -68,5 +69,6 @@ io.on("connection", (socket) => {
 });
 
 app.use(express.static(__dirname + "/public"));
+app.use(cors());
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
