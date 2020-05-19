@@ -1,4 +1,4 @@
-import { socket } from "./script.js";
+/* import { socket } from "./script.js";
 
 let username;
 
@@ -23,4 +23,4 @@ window.addEventListener('load', () => {
     
   }
 
-}) 
+})  */

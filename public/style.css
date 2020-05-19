@@ -95,7 +95,6 @@
   align-items: center;
 }
 
-<<<<<<< HEAD
 #containerSidebar {
   position: relative;
   margin-left: 8px;
@@ -137,79 +136,59 @@
 #boxMessages p:nth-child(even) {
   background: #fafafa;
 }
-=======
-/* .popup {
+
+/* Shown by default menu */
+
+.hidden {
+  display: none;
+}
+
+.showFlex {
+  display: flex;
+}
+
+#menuContainer {
+  position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
   justify-content: center;
   align-items: center;
-  display: none;
-  pointer-events: none;
 }
 
-.popup-content {
-  width: 300px;
-  height: 200px;
-  background-color: seashell;
-  border-radius: 4px;
-  text-align: center;
-  padding: 10px;
-  position: relative;
+.jumbotron {
+  padding: 2rem 2rem;
 }
 
-.close {
+#bigName {
   position: absolute;
+  margin-top: 10px;
   top: 0;
-  right: 20px;
-  font-size: 32px;
-  transform: rotate(45deg);
-  cursor: pointer;
+  font-size: 90px;
+  text-decoration: underline;
 }
 
-.mainMenu {
-  max-width: 1000px;
-  margin: auto;
-  overflow: hidden;
-  padding: 0 3rem;
+#smallName {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+#centeredFooter {
   display: flex;
-  flex-direction: column;
-}
-
-.mainMenu-button {
-  position: relative;
-  width: 200px;
-  margin-top: 100px;
-  background-color: rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  text-align: center;
-  padding: 10px;
-  
-}
-
-#bigButton {
-  background-color: rgba(255, 255, 255, 0.5);
-  font-size: 50px;
-  text-decoration: none;
-  color: red;
-}
-
-.titleText {
-  margin-top: 100px;
-  font-size: 100px;
-  text-align: center;
-  color: yellow;
-} */
-
-button {
-  width: 25%;
-  position: relative;
-  margin-bottom: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
 }
 
 #playBtn {
-  margin-bottom: 75px;
+  width: 100px;
+  height: 50px;
+  border-radius: 0.5rem;
+  border-width: 2px;
+  font-size: 30px;
+  padding: 0;
 }
->>>>>>> 16f445f0d005f57390e589c22bda67d105e795bb
+
+#menuField {
+  max-width: 800px;
+  position: relative;
+}

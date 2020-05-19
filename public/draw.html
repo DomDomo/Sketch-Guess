@@ -77,6 +77,54 @@
     <title>Sketch-Guess</title>
   </head>
   <body>
+
+    <!-- Username popup -->
+<!--     <div class="modal fade" data-backdrop="static" data-keyboard="false" id="usernameModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Choose a username to begin playing</h5>
+          </div>
+          <div class="modal-body">
+            <form>
+              <input type="text" id="usernameInput" class="form-control" placeholder="Enter username" required>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Play</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+<!-- Shown by default main menu/username select screen -->
+<div class="shownDefault showFlex" id="menuContainer">
+  <div id="bigName">Sketch and Guess</div>
+  <div class="jumbotron" id="menuField">
+    <h1 id="smallName">Choose a username to begin playing!</h1>
+    <p class="lead">
+      <div class="form-group">
+      
+        <input type="text" id="usernameInput" class="form-control" placeholder="Enter username" maxlength="20" required>
+      
+      </div>
+    </p>
+    <p>Username cannot be longer than 20 characters.</p>
+    <hr class="my-3">
+    <p class="lead" id="centeredFooter">
+      <a class="btn btn-outline-success btn-lg" id="playBtn" href="" role="button">Play</a>
+    </p>
+  </div>
+
+
+</div>
+
+
+
+
+
+<!-- Hidden until username is entered -->
+<div class="hiddenDefault hidden" id="gameContainer">
     <div class="nav-scroller py-1 mb-2">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Sketch-Guess</a>
@@ -155,7 +203,7 @@
         </aside>
       <!-- /.row -->
     </main>
-
+  </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/socket.io/socket.io.js"></script>

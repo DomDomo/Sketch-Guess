@@ -18,9 +18,11 @@ const wordChoiceBox = document.getElementById("wordChoiceBox");
 
 socket.on("connect", () => {
   // At this point we have connected to the server
-  const name = prompt("What is your name?");
+  //$('#usernameModal').modal('show');
 
-  socket.emit("new_user", name);
+
+
+  
 
   const canvas = new Canvas(canvasDiv, socket);
   const toolbar = new Toolbar(toolbarDiv, canvas);
@@ -40,9 +42,29 @@ socket.on("connect", () => {
     canvas.clearCanvas();
   });
 
+  socket.on("show_game", () => {
+    document.getElementById("menuContainer").classList.remove("showFlex");
+    document.getElementById("menuContainer").classList.add("hidden");
+    document.getElementById("gameContainer").classList.remove("hidden");
+  });
+
   window.onscroll = function (event) {
     canvas.rect = canvasDiv.getBoundingClientRect();
   };
 });
 
-window.addEventListener("load", () => {});
+//Username setup stuff
+
+window.addEventListener("load", () => {
+  const playBtn = document.getElementById('playBtn');
+  const usernameInput = document.getElementById('usernameInput');
+
+
+  playBtn.addEventListener('click', function(event) {
+    console.log('User entered name');
+    event.preventDefault();
+    let name = usernameInput.value;
+    socket.emit('new_user', name);
+    name = '';
+  })
+});
