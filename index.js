@@ -92,6 +92,7 @@ io.on("connection", (socket) => {
 });
 
 app.use(express.static(__dirname + "/public"));
+app.use(cors());
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
 
