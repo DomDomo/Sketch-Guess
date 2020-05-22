@@ -46,6 +46,7 @@ socket.on("connect", () => {
     document.getElementById("menuContainer").classList.remove("showFlex");
     document.getElementById("menuContainer").classList.add("hidden");
     document.getElementById("gameContainer").classList.remove("hidden");
+
   });
 
   window.onscroll = function (event) {
