@@ -1,3 +1,12 @@
+body {
+  background-image: url(/img/science.png);
+}
+
+.titleName {
+  font-family: "Finger Paint", cursive;
+  font-size: 6em;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -157,14 +166,6 @@
 
 .jumbotron {
   padding: 2rem 2rem;
-}
-
-#bigName {
-  position: absolute;
-  margin-top: 10px;
-  top: 0;
-  font-size: 90px;
-  text-decoration: underline;
 }
 
 #smallName {
