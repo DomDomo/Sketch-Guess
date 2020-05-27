@@ -10,8 +10,8 @@ export class UserBar {
     }
   
     _setupSocket(socket) {
-      socket.on("newUserList", (name, users) => {
-        this._userNewList(name, users);
+      socket.on("newUserList", (name, users, points) => {
+        this._userNewList(name, users, points);
       });
 
       socket.on("user_connected", (name) => {
@@ -27,7 +27,7 @@ export class UserBar {
       }); */
     }
 
-    _userNewList(name, users) {
+    _userNewList(name, users, points) {
       for (const user in users) {
         console.log(`${user}: ${users[user]}`);
         let nameElement = document.createElement("div");
@@ -39,9 +39,14 @@ export class UserBar {
         let userNameElement = document.createElement("b");
         userNameElement.innerText = users[user];
         let pointElement = document.createElement("p");
+        let scoreElement = document.createElement("b");
         pointElement.innerHTML = "Points: ";
         nameElement.id = `name_${users[user]}`;
+        scoreElement.id = `score_${users[user]}`;
+        scoreElement.innerHTML = `${points[users[user]]}`;
+        console.log(points[users[user]]);
         nameElement.appendChild(userNameElement);
+        pointElement.appendChild(scoreElement);
         nameElement.appendChild(pointElement);
         containerUser.appendChild(nameElement);
       };
@@ -57,9 +62,13 @@ export class UserBar {
         let userNameElement = document.createElement("b");
         userNameElement.innerText = name;
         let pointElement = document.createElement("p");
+        let scoreElement = document.createElement("b");
         pointElement.innerHTML = "Points: ";
         nameElement.id = `name_${name}`;
+        scoreElement.id = `score_${name}`;
+        scoreElement.innerHTML = "0";
         nameElement.appendChild(userNameElement);
+        pointElement.appendChild(scoreElement);
         nameElement.appendChild(pointElement);
         containerUser.appendChild(nameElement);
     }

@@ -44,9 +44,6 @@ export class Game {
     socket.on("start_countdown", (data) => {
       this._startCountdown(data);
     });
-    socket.on("choose_player", () => {
-      this._choosePlayer();
-    });
   }
 
   _revokeTurn(socket) {
@@ -65,7 +62,6 @@ export class Game {
   }
 
   _chooseWord(word) {
-    console.log(word);
     this.chosenWord = word;
     this.socket.emit("choosen_word", this.chosenWord);
     this.canvas.initiateTurn();
@@ -75,7 +71,6 @@ export class Game {
   }
 
   _startCountdown(data) {
-    console.log(data);
     let time = data.time;
 
     let timer = setInterval(() => {
@@ -89,9 +84,5 @@ export class Game {
         this.choiceBoxHeader.innerText = `Round begins in: ${time}`;
       }
     }, 1000);
-  }
-
-  _choosePlayer() {
-    console.log("Chosing palyer scripts");
   }
 }

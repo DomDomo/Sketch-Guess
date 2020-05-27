@@ -11,9 +11,10 @@ const io = socketio(server);
 
 app.use(cors());
 
-const timeUntilRoundStarts = 9; // in seconds
+const timeUntilRoundStarts = 4; // in seconds
 const playersToStartTheGame = 2;
 const users = {};
+const points = {};
 const currentState = {
   drawer: "",
   wordToGuess: "",
@@ -29,7 +30,6 @@ io.on("connection", (socket) => {
 
   function afterCountDown() {
     setTimeout(() => {
-      console.log("im here");
       let keys = Object.keys(users);
       let randomPlayerID = keys[(keys.length * Math.random()) << 0];
       currentState.drawer = randomPlayerID;
@@ -50,12 +50,13 @@ io.on("connection", (socket) => {
       console.log("Username taken...");
     } else if (name) {
       users[socket.id] = name;
+      points[name] = 0;
       console.log("User added to active successfully");
       //Show draw elements
       io.to(socket.id).emit("show_game");
 
       socket.broadcast.emit("user_connected", name);
-      socket.emit("newUserList", name, users);
+      socket.emit("newUserList", name, users, points);
       io.to(socket.id).emit("you_joined");
       //Are there enough players to start the game
       if (!currentState.gameIsRunning) {
@@ -75,9 +76,11 @@ io.on("connection", (socket) => {
       message.toLowerCase() === currentState.wordToGuess.toLocaleLowerCase() &&
       currentState.drawer !== socket.id
     ) {
+      points[users[socket.id]]++;
       io.sockets.emit("correct_guess", {
         name: users[socket.id],
         word: currentState.wordToGuess,
+        score: points[users[socket.id]],
       });
       io.to(currentState.drawer).emit("revoke_turn");
       io.sockets.emit("start_countdown", { time: timeUntilRoundStarts });
@@ -116,6 +119,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     socket.broadcast.emit("user_disconnected", users[socket.id]);
+    delete points[users[socket.id]];
     delete users[socket.id];
   });
 });
