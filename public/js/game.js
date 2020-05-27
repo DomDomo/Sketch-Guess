@@ -19,7 +19,7 @@ export class Game {
   _beginGame() {
     let randomWords = words.sort(() => 0.5 - Math.random()).slice(0, 3);
     this._setWords(randomWords);
-    console.log(randomWords);
+    //console.log(randomWords);
     this.choiceBox.style.display = "block";
   }
 

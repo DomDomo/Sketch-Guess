@@ -2,6 +2,7 @@ import { Canvas } from "./canvas.js";
 import { Toolbar } from "./toolbar.js";
 import { Chat } from "./chat.js";
 import { Game } from "./game.js";
+import { UserBar } from "./userBar.js";
 
 console.log("🌍 Connecting to server…");
 
@@ -9,6 +10,8 @@ export const socket = io();
 
 const canvasDiv = document.querySelector("#canvasDiv");
 const toolbarDiv = document.querySelector("#toolbarDiv");
+
+const containerUser = document.getElementById("containerUser");
 
 const formChat = document.getElementById("formChat");
 const inputChat = document.getElementById("inputChat");
@@ -29,11 +32,13 @@ socket.on("connect", () => {
     const toolbar = new Toolbar(toolbarDiv, canvas);
     const chat = new Chat(formChat, inputChat, boxMessages, socket);
     const game = new Game(socket, wordChoiceBox, canvas);
+    const userBar = new UserBar(socket, containerUser);
 
     window.canvas = canvas;
     window.toolbar = toolbar;
     window.chat = chat;
     window.game = game;
+    window.userBar = userBar;
 
     canvas.socket.on("drawing", (data) => {
       canvas.receiveDrawingData(data);
