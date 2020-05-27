@@ -4,7 +4,11 @@ body {
 
 .titleName {
   font-family: "Finger Paint", cursive;
-  font-size: 6em;
+  font-size: 5vw;
+}
+
+#gameContainer {
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -194,7 +198,8 @@ body {
   position: relative;
 }
 
-#containerUser p, #containerUser div {
+#containerUser p,
+#containerUser div {
   text-align: center;
   font-size: 20px;
 }

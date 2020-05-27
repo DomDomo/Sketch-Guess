@@ -1,138 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm"
-      crossorigin="anonymous"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <style>
-      .container {
-        max-width: 90%;
-      }
-      #canvasDiv {
-        width: 100%;
-        height: 30vw;
-      }
-      #toolbarDiv {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        height: 4vw;
-        margin-top: 8px;
-      }
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/darkly/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rCA2D+D9QXuP2TomtQwd+uP50EHjpafN+wruul0sXZzX/Da7Txn4tB9aLMZV4DZm" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 
-      #toolbarDiv.colorItem {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        flex: 0 0 auto;
-      }
+  <style>
+    .container {
+      max-width: 90%;
+    }
 
-      .containerColorColumn {
-        height: auto;
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-      }
+    #canvasDiv {
+      width: 100%;
+      height: 30vw;
+    }
 
-      .containerColorColumn .colorItem {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        flex: 0 0 auto;
-      }
+    #toolbarDiv {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 4vw;
+      margin-top: 8px;
+    }
 
-      .containerColorColumn .colorItem:active,
-      .containerColorColumn .colorItem:hover {
-        border: 2px solid #000;
-      }
+    #toolbarDiv.colorItem {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
 
-      #containerChat {
-        height: 55vh;
-      }
+    .containerColorColumn {
+      height: auto;
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
 
-      div.btn-group {
-        margin: 0 auto; 
-        text-align: center;
-        width: inherit;
-        display: inline-block;
-      }
-    </style>
+    .containerColorColumn .colorItem {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
 
-    <title>BrushABunch</title>
-  </head>
-  <body>
+    .containerColorColumn .colorItem:active,
+    .containerColorColumn .colorItem:hover {
+      border: 2px solid #000;
+    }
 
-<!-- Shown by default main menu/username select screen -->
-<div class="shownDefault showFlex" id="menuContainer">
-  <div class="containter">
-  <div class="row flex-nowrap justify-content-between align-items-center">
-    <div class="col-12 text-center">
-      <h1 class="titleName blog-header-logo ">BrushABunch</h1>
-    </div>
-  </div>
-  <div class="row">
-  <div class="jumbotron" id="menuField">
-    <h1 id="smallName">Choose a username to begin playing!</h1>
-    <p class="lead">
-      <div class="form-group">
-      
-        <input type="text" id="usernameInput" class="form-control" placeholder="Enter username" maxlength="20" required>
-      
+    #containerChat {
+      height: 55vh;
+    }
+
+    div.btn-group {
+      margin: 0 auto;
+      text-align: center;
+      width: inherit;
+      display: inline-block;
+    }
+  </style>
+
+  <title>BrushABunch</title>
+</head>
+
+<body>
+
+  <!-- Shown by default main menu/username select screen -->
+  <div class="shownDefault showFlex" id="menuContainer">
+    <div class="containter">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-12 text-center">
+          <h1 class="titleName blog-header-logo ">BrushABunch</h1>
+        </div>
       </div>
-    </p>
-    <hr class="my-3">
-    <p class="lead" id="centeredFooter">
-      <a class="btn btn-outline-success btn-lg" id="playBtn" href="" role="button">Play</a>
-    </p>
+      <div class="row">
+        <div class="jumbotron" id="menuField">
+          <h1 id="smallName">Choose a username to begin playing!</h1>
+          <p class="lead">
+          <div class="form-group">
+
+            <input type="text" id="usernameInput" class="form-control" placeholder="Enter username" maxlength="20"
+              required>
+
+          </div>
+          </p>
+          <hr class="my-3">
+          <p class="lead" id="centeredFooter">
+            <a class="btn btn-outline-success btn-lg" id="playBtn" href="" role="button">Play</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+
   </div>
-</div>
-</div>
-
-
-</div>
 
 
 
 
 
-<!-- Hidden until username is entered -->
-<div class="hiddenDefault hidden" id="gameContainer">
-    
+  <!-- Hidden until username is entered -->
+  <div class="hiddenDefault hidden" id="gameContainer">
+
     <main role="main" class="container">
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
           <div class="col-12 text-center">
-            <h1 class="titleName blog-header-logo ">BrushABunch</h1>
+            <h1 class="titleName">BrushABunch</h1>
           </div>
 
         </div>
       </header>
+      <div class="row">
+        <div id="wordChoiceBox" class="btn-group btn-group-lg mt-4" role="group" aria-label="Basic example"
+          style="display: none;">
+          <h3>Choose a word!</h3>
+          <button type="button" class="btn btn-danger">Block level button</button>
+          <button type="button" class="btn btn-warning">Block level button</button>
+          <button type="button" class="btn btn btn-info">Block level button</button>
+        </div>
+      </div>
 
       <div class="row">
         <!-- Active user list -->
 
-        <aside class="col-md-2" style="height: 200px;">
+        <aside class="col-md-2">
           <h3 class="pb-3 mb-4 font-italic border-bottom">User list</h3>
-            <div id="containerUser">
-              
-            </div>
+          <div id="containerUser" style="overflow-x:hidden; overflow-y:visible; height:500px;">
+
+          </div>
         </aside>
 
         <div class="col-md-7">
@@ -164,13 +171,6 @@
               </div>
             </div>
           </div>
-          <div id="wordChoiceBox" class="btn-group btn-group-lg mt-4" role="group" aria-label="Basic example" style="display: none;">
-            <h3>Choose a word!</h3>
-            <button type="button" class="btn btn-danger">Block level button</button>
-            <button type="button" class="btn btn-warning">Block level button</button>
-            <button type="button" class="btn btn btn-info">Block level button</button>
-          </div>
-          
         </div>
 
         <aside class="col-md-3" style="height: 200px;">
@@ -182,21 +182,15 @@
               </div>
               <div id="boxChatInput">
                 <form id="formChat" action="">
-                  <input
-                    class="form-control"
-                    id="inputChat"
-                    autocomplete="off"
-                    type="text"
-                    placeholder="Type your guess here..."
-                    maxlength="100"
-                  />
+                  <input class="form-control" id="inputChat" autocomplete="off" type="text"
+                    placeholder="Type your guess here..." maxlength="100" />
                 </form>
               </div>
             </div>
           </div>
         </aside>
 
-        
+
       </div>
       <!-- /.row -->
     </main>
@@ -204,8 +198,15 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" src="js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
+
 </html>
