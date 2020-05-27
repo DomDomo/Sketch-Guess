@@ -12,7 +12,7 @@ const io = socketio(server);
 app.use(cors());
 
 const users = {};
-let currentState = {
+const currentState = {
   drawer: "",
   wordToGuess: "",
 };
@@ -44,6 +44,7 @@ io.on("connection", (socket) => {
       io.to(socket.id).emit("show_game");
 
       socket.broadcast.emit("user_connected", name);
+      socket.emit("newUserList", name, users);
       io.to(socket.id).emit("you_joined");
       //Are there enough players to start the game
       if (Object.keys(users).length >= 2) {

@@ -19,7 +19,7 @@
 
     <style>
       .container {
-        max-width: 80%;
+        max-width: 90%;
       }
       #canvasDiv {
         width: 100%;
@@ -123,7 +123,16 @@
     </div>
     <main role="main" class="container">
       <div class="row">
-        <div class="col-md-8">
+        <!-- Active user list -->
+
+        <aside class="col-md-2" style="height: 200px;">
+          <h3 class="pb-3 mb-4 font-italic border-bottom">User list</h3>
+            <div id="containerUser">
+              
+            </div>
+        </aside>
+
+        <div class="col-md-7">
           <h3 class="pb-3 mb-4 font-italic border-bottom">Canvas</h3>
           <div id="canvasDiv"></div>
           <div class="mt-4" id="toolbarDiv">
@@ -159,7 +168,7 @@
           
         </div>
 
-        <aside class="col-md-4" style="height: 200px;">
+        <aside class="col-md-3" style="height: 200px;">
           <h3 class="pb-3 mb-4 font-italic border-bottom">Chat</h3>
           <!-- Chat Box-->
           <div id="containerChat">
@@ -181,6 +190,9 @@
             </div>
           </div>
         </aside>
+
+        
+      </div>
       <!-- /.row -->
     </main>
   </div>
