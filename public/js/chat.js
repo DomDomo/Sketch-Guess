@@ -46,7 +46,7 @@ export class Chat {
 
   _appendMessage(messageElement) {
     boxMessages.append(messageElement);
-    messageElement.scrollTo = boxMessages.scrollHeight;
+    boxMessages.scrollTop = boxMessages.scrollHeight;
   }
 
   _makeMessageTemplate(data) {
