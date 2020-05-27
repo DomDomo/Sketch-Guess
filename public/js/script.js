@@ -18,6 +18,8 @@ const inputChat = document.getElementById("inputChat");
 const boxMessages = document.getElementById("boxMessages");
 
 const wordChoiceBox = document.getElementById("wordChoiceBox");
+const choiceBoxHeader = document.getElementById("choiceBoxHeader");
+const choiceButtonsDiv = document.getElementById("choiceButtonsDiv");
 
 socket.on("connect", () => {
   // At this point we have connected to the server
@@ -31,7 +33,13 @@ socket.on("connect", () => {
     const canvas = new Canvas(canvasDiv, socket);
     const toolbar = new Toolbar(toolbarDiv, canvas);
     const chat = new Chat(formChat, inputChat, boxMessages, socket);
-    const game = new Game(socket, wordChoiceBox, canvas);
+    const game = new Game(
+      choiceBoxHeader,
+      choiceButtonsDiv,
+      socket,
+      wordChoiceBox,
+      canvas
+    );
     const userBar = new UserBar(socket, containerUser);
 
     window.canvas = canvas;

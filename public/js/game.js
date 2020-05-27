@@ -1,13 +1,20 @@
 import { words } from "./words.js";
 
 export class Game {
-  constructor(socket, wordChoiceBox, canvas) {
+  constructor(
+    choiceBoxHeader,
+    choiceButtonsDiv,
+    socket,
+    wordChoiceBox,
+    canvas
+  ) {
     this.socket = socket;
     this.choiceBox = wordChoiceBox;
     this.canvas = canvas;
 
     this.wordButtons = Array.from(wordChoiceBox.getElementsByClassName("btn"));
-    this.choiceBoxHeader = wordChoiceBox.querySelector("h3");
+    this.choiceBoxHeader = choiceBoxHeader;
+    this.choiceButtonsDiv = choiceButtonsDiv;
 
     this.chosenWord;
 
@@ -19,8 +26,8 @@ export class Game {
   _beginGame() {
     let randomWords = words.sort(() => 0.5 - Math.random()).slice(0, 3);
     this._setWords(randomWords);
-    //console.log(randomWords);
-    this.choiceBox.style.display = "block";
+
+    this.choiceButtonsDiv.style.display = "block";
   }
 
   _setWords(randomWords) {
@@ -34,16 +41,18 @@ export class Game {
     socket.on("game_start", () => {
       this._beginGame();
     });
+    socket.on("start_countdown", (data) => {
+      this._startCountdown(data);
+    });
+    socket.on("choose_player", () => {
+      this._choosePlayer();
+    });
   }
 
   _revokeTurn(socket) {
     socket.on("revoke_turn", () => {
       this.canvas.revokeCanvasAcces();
-      this.choiceBoxHeader.style.display = "Choose a word!";
-      this.choiceBox.style.display = "none";
-      this.wordButtons.forEach((element) => {
-        element.style.display = "";
-      });
+      this.choiceButtonsDiv.style.display = "none";
     });
   }
 
@@ -60,10 +69,29 @@ export class Game {
     this.chosenWord = word;
     this.socket.emit("choosen_word", this.chosenWord);
     this.canvas.initiateTurn();
-    this.wordButtons.forEach((element) => {
-      element.style.display = "none";
-    });
+    this.choiceButtonsDiv.style.display = "none";
     this.choiceBoxHeader.innerText = `Your word is: ${word}`;
     this.canvas._resizeCanvas();
+  }
+
+  _startCountdown(data) {
+    console.log(data);
+    let time = data.time;
+
+    let timer = setInterval(() => {
+      if (time === 0) {
+        this.choiceBoxHeader.innerText = `Round begins in: ${time}`;
+        //When the timer is finished begin the round
+        this.choiceBoxHeader.innerText = "";
+        clearInterval(timer);
+      } else {
+        time -= 1;
+        this.choiceBoxHeader.innerText = `Round begins in: ${time}`;
+      }
+    }, 1000);
+  }
+
+  _choosePlayer() {
+    console.log("Chosing palyer scripts");
   }
 }

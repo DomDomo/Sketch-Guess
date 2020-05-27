@@ -11,10 +11,13 @@ const io = socketio(server);
 
 app.use(cors());
 
+const timeUntilRoundStarts = 9; // in seconds
+const playersToStartTheGame = 2;
 const users = {};
 const currentState = {
   drawer: "",
   wordToGuess: "",
+  gameIsRunning: false,
 };
 
 app.get("/", (req, res) => {
@@ -23,23 +26,31 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log(`New user has joined with the id of: ${socket.id}`);
-  
+
+  function afterCountDown() {
+    setTimeout(() => {
+      console.log("im here");
+      let keys = Object.keys(users);
+      let randomPlayerID = keys[(keys.length * Math.random()) << 0];
+      currentState.drawer = randomPlayerID;
+      io.to(randomPlayerID).emit("game_start");
+      io.sockets.emit("drawer_selected", { name: users[randomPlayerID] });
+    }, timeUntilRoundStarts * 1000 + 1000);
+  }
+
   socket.on("new_user", (name) => {
     console.log(`New username chosen by user with the id of: ${socket.id}`);
     //Check if username is taken
-    
-    var isUsernameTaken = false;
-    if(Object.values(users).includes(name)){
-      isUsernameTaken = true;
-    }
 
-    if(name && isUsernameTaken){
+    let isUsernameTaken = Object.values(users).includes(name) ? true : false;
+
+    if (name && isUsernameTaken) {
       //Show username not available error
 
-      console.log('Username taken...')
-    } else if(name) {
+      console.log("Username taken...");
+    } else if (name) {
       users[socket.id] = name;
-      console.log('User added to active successfully');
+      console.log("User added to active successfully");
       //Show draw elements
       io.to(socket.id).emit("show_game");
 
@@ -47,13 +58,17 @@ io.on("connection", (socket) => {
       socket.emit("newUserList", name, users);
       io.to(socket.id).emit("you_joined");
       //Are there enough players to start the game
-      if (Object.keys(users).length >= 2) {
-        io.to(socket.id).emit("game_start");
+      if (!currentState.gameIsRunning) {
+        if (Object.keys(users).length >= playersToStartTheGame) {
+          currentState.gameIsRunning = true;
+          io.sockets.emit("start_countdown", {
+            time: timeUntilRoundStarts,
+          });
+          afterCountDown();
+        }
       }
     }
   });
-
-  
 
   socket.on("send-chat-message", (message) => {
     if (
@@ -65,15 +80,25 @@ io.on("connection", (socket) => {
         word: currentState.wordToGuess,
       });
       io.to(currentState.drawer).emit("revoke_turn");
-      io.to(socket.id).emit("game_start");
+      io.sockets.emit("start_countdown", { time: timeUntilRoundStarts });
+      afterCountDown();
     } else {
-      if(message.toLowerCase() !== currentState.wordToGuess.toLocaleLowerCase()){
+      if (
+        message.toLowerCase() !== currentState.wordToGuess.toLocaleLowerCase()
+      ) {
         io.sockets.emit("chat-message", {
           message: message,
           name: users[socket.id],
         });
       }
     }
+  });
+
+  socket.on("begin_round", () => {
+    let keys = Object.keys(users);
+    let randomPlayerID = keys[(keys.length * Math.random()) << 0];
+    io.to(randomPlayerID).emit("game_start");
+    io.sockets.emit("drawer_selected", { name: users[randomPlayerID] });
   });
 
   socket.on("drawing", (data) => {
@@ -99,4 +124,3 @@ app.use(express.static(__dirname + "/public"));
 app.use(cors());
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
-
