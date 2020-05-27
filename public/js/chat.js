@@ -88,5 +88,10 @@ export class Chat {
       messageElement.innerHTML = `${messageElement.innerHTML} got that it was  <b>${data.word}<b>`;
       messageElement.style.color = "blue";
       this._appendMessage(messageElement);
+
+      let toChange = document.getElementById(`score_${data.name}`);
+      toChange.innerHTML = `${data.score}`;
+
+
   }
 }
