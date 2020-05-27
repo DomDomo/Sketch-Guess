@@ -22,9 +22,9 @@ export class UserBar {
         this._userLeave(name);
       });
 
-      socket.on("correct_guess", (data) => {
+      /* socket.on("correct_guess", (data) => {
         this._userCorrectGuess(data);
-      });
+      }); */
     }
 
     _userNewList(name, users) {

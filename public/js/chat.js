@@ -1,3 +1,4 @@
+
 export class Chat {
   constructor(formChat, inputChat, boxMessages, socket) {
     this.form = formChat;
@@ -83,9 +84,9 @@ export class Chat {
   }
 
   _correctGuessMessage(data) {
-    let messageElement = this._makeMessageTemplate(data);
-    messageElement.innerHTML = `${messageElement.innerHTML} got that it was  <b>${data.word}<b>`;
-    messageElement.style.color = "blue";
-    this._appendMessage(messageElement);
+      let messageElement = this._makeMessageTemplate(data);
+      messageElement.innerHTML = `${messageElement.innerHTML} got that it was  <b>${data.word}<b>`;
+      messageElement.style.color = "blue";
+      this._appendMessage(messageElement);
   }
 }

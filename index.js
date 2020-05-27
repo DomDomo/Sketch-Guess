@@ -57,7 +57,8 @@ io.on("connection", (socket) => {
 
   socket.on("send-chat-message", (message) => {
     if (
-      message.toLowerCase() === currentState.wordToGuess.toLocaleLowerCase()
+      message.toLowerCase() === currentState.wordToGuess.toLocaleLowerCase() &&
+      currentState.drawer !== socket.id
     ) {
       io.sockets.emit("correct_guess", {
         name: users[socket.id],
@@ -66,10 +67,12 @@ io.on("connection", (socket) => {
       io.to(currentState.drawer).emit("revoke_turn");
       io.to(socket.id).emit("game_start");
     } else {
-      io.sockets.emit("chat-message", {
-        message: message,
-        name: users[socket.id],
-      });
+      if(message.toLowerCase() !== currentState.wordToGuess.toLocaleLowerCase()){
+        io.sockets.emit("chat-message", {
+          message: message,
+          name: users[socket.id],
+        });
+      }
     }
   });
 
