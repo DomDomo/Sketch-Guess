@@ -15,7 +15,7 @@ const timeUntilRoundStarts = 4; // in seconds
 const playersToStartTheGame = 2;
 const users = {};
 const points = {};
-const currentState = {
+let currentState = {
   drawer: "",
   wordToGuess: "",
   gameIsRunning: false,
@@ -119,8 +119,22 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     socket.broadcast.emit("user_disconnected", users[socket.id]);
+    console.log(socket.id);
+    if (currentState.drawer === socket.id) {
+      io.to(socket).emit("revoke_turn");
+      currentState = {
+        drawer: "",
+        wordToGuess: "",
+        gameIsRunning: false,
+      };
+    }
     delete points[users[socket.id]];
     delete users[socket.id];
+    if (Object.keys(users).length < playersToStartTheGame) {
+      console.log("hello");
+      currentState.gameIsRunning = false;
+      io.sockets.emit("revoke_turn");
+    }
   });
 });
 
