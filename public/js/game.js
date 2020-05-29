@@ -33,7 +33,8 @@ export class Game {
   _setWords(randomWords) {
     const { wordButtons } = this;
     for (let i = 0; i < randomWords.length; i++) {
-      wordButtons[i].innerText = randomWords[i];
+      wordButtons[i].innerText =
+        randomWords[i].charAt(0).toUpperCase() + randomWords[i].slice(1);
     }
   }
 
