@@ -128,7 +128,11 @@ io.on("connection", (socket) => {
         gameIsRunning: false,
       };
     }
+    delete points[users[socket.id]];
+    delete users[socket.id];
+
     if (!currentState.gameIsRunning) {
+      console.log(`${Object.keys(users).length} >= ${playersToStartTheGame}`);
       if (Object.keys(users).length >= playersToStartTheGame) {
         currentState.gameIsRunning = true;
         io.sockets.emit("start_countdown", {
@@ -137,8 +141,7 @@ io.on("connection", (socket) => {
         afterCountDown();
       }
     }
-    delete points[users[socket.id]];
-    delete users[socket.id];
+
     if (Object.keys(users).length < playersToStartTheGame) {
       console.log("hello");
       currentState.gameIsRunning = false;
