@@ -42,7 +42,14 @@ io.on("connection", (socket) => {
     console.log(`New username chosen by user with the id of: ${socket.id}`);
     //Check if username is taken
 
-    let isUsernameTaken = Object.values(users).includes(name) ? true : false;
+    let isUsernameTaken;
+    Object.values(users).forEach((user) => {
+      if (user.toLocaleLowerCase() === name.toLocaleLowerCase()) {
+        isUsernameTaken = true;
+      } else {
+        isUsernameTaken = false;
+      }
+    });
 
     if (name && isUsernameTaken) {
       //Show username not available error
