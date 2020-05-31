@@ -26,9 +26,8 @@ socket.on("connect", () => {
   //$('#usernameModal').modal('show');
 
   socket.on("show_game", () => {
-    document.getElementById("menuContainer").classList.remove("showFlex");
-    document.getElementById("menuContainer").classList.add("hidden");
-    document.getElementById("gameContainer").classList.remove("hidden");
+    $("#menuContainer").hide();
+    $("#gameContainer").show();
 
     const canvas = new Canvas(canvasDiv, socket);
     const toolbar = new Toolbar(toolbarDiv, canvas);

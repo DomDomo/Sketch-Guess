@@ -39,7 +39,6 @@ io.on("connection", (socket) => {
   }
 
   socket.on("new_user", (name) => {
-    console.log(`New username chosen by user with the id of: ${socket.id}`);
     //Check if username is taken
 
     let isUsernameTaken;
@@ -58,7 +57,6 @@ io.on("connection", (socket) => {
     } else if (name) {
       users[socket.id] = name;
       points[name] = 0;
-      console.log("User added to active successfully");
       //Show draw elements
       io.to(socket.id).emit("show_game");
 
@@ -126,7 +124,6 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     socket.broadcast.emit("user_disconnected", users[socket.id]);
-    console.log(socket.id);
     if (currentState.drawer === socket.id) {
       io.to(socket).emit("revoke_turn");
       currentState = {
@@ -139,7 +136,6 @@ io.on("connection", (socket) => {
     delete users[socket.id];
 
     if (!currentState.gameIsRunning) {
-      console.log(`${Object.keys(users).length} >= ${playersToStartTheGame}`);
       if (Object.keys(users).length >= playersToStartTheGame) {
         currentState.gameIsRunning = true;
         io.sockets.emit("start_countdown", {
@@ -150,7 +146,6 @@ io.on("connection", (socket) => {
     }
 
     if (Object.keys(users).length < playersToStartTheGame) {
-      console.log("hello");
       currentState.gameIsRunning = false;
       io.sockets.emit("revoke_turn");
     }

@@ -1,0 +1,255 @@
+body {
+  background-image: url(/img/science.png);
+}
+
+body .container {
+  max-width: 90%;
+}
+
+body .titleName {
+  font-family: "Finger Paint", cursive;
+  font-size: 5vw;
+}
+
+body ::-webkit-scrollbar {
+  width: 5px;
+}
+
+body ::-webkit-scrollbar-track {
+  width: 5px;
+  background: #f5f5f5;
+}
+
+body ::-webkit-scrollbar-thumb {
+  width: 1em;
+  background-color: #ddd;
+  outline: 1px solid slategrey;
+  border-radius: 1rem;
+}
+
+#menuContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#menuField {
+  padding: 2rem;
+  max-width: 800px;
+  position: relative;
+}
+
+#smallName {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+#centeredFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 0;
+}
+
+#centeredFooter #playBtn {
+  width: 100px;
+  height: 50px;
+  border-radius: 0.5rem;
+  border-width: 2px;
+  font-size: 30px;
+  padding: 0;
+}
+
+#gameContainer {
+  width: 100%;
+  height: 100%;
+}
+
+#wordChoiceBox {
+  margin: 0 auto;
+  text-align: center;
+  width: inherit;
+  display: inline-block;
+}
+
+#containerUser {
+  overflow-x: hidden;
+  overflow-y: visible;
+  height: 55vh;
+}
+
+#containerUser p,
+#containerUser div {
+  text-align: center;
+  font-size: 20px;
+}
+
+#canvasDiv {
+  width: 100%;
+  height: 30vw;
+}
+
+#toolbarDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 4vw;
+  margin-top: 8px;
+}
+
+#toolbarDiv .containerBrushSizes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#toolbarDiv .containerBrushSizes .brushSize {
+  position: relative;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  background-color: #fff;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+#toolbarDiv .containerBrushSizes .brushSize:hover {
+  background-color: #d3d3d3;
+}
+
+#toolbarDiv .containerBrushSizes .sizeCenter {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+}
+
+#toolbarDiv .containerBrushSizes .size {
+  position: absolute;
+  background-color: #000;
+}
+
+#toolbarDiv .containerBrushSizes .size6 {
+  left: -3px;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+}
+
+#toolbarDiv .containerBrushSizes .size30 {
+  left: -15px;
+  top: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+#toolbarDiv .containerBrushSizes .size16 {
+  left: -8px;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+}
+
+#toolbarDiv .containerBrushSizes .size44 {
+  left: -22px;
+  top: -22px;
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+}
+
+#toolbarDiv .containerColorColumn {
+  height: auto;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+#toolbarDiv .containerColorColumn .colorItem {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+}
+
+#toolbarDiv .containerColorColumn .colorItem:active {
+  border: 2px solid #000;
+}
+
+#toolbarDiv .containerColorColumn .colorItem:hover {
+  border: 2px solid #000;
+}
+
+#containerChat {
+  height: 55vh;
+  padding: 4px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  border-radius: 2px;
+}
+
+#boxChat {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+}
+
+#boxChatInput {
+  height: 34px;
+}
+
+#boxMessages {
+  height: 55vh;
+  overflow-y: auto;
+}
+
+#boxMessages p {
+  padding: 3px;
+  margin: 0;
+  word-wrap: break-word;
+}
+/*# sourceMappingURL=style.css.map */
