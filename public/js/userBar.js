@@ -32,8 +32,8 @@ export class UserBar {
       let nameElement = document.createElement("div");
       nameElement.style.color = "black";
       nameElement.style.backgroundColor = this.colorToggle
-        ? "darkgray"
-        : "grey";
+        ? "snow"
+        : "whitesmoke";
       this.colorToggle = !this.colorToggle;
       let userNameElement = document.createElement("b");
       userNameElement.innerText = users[user];

@@ -55,8 +55,8 @@ export class Chat {
     let messageElement = document.createElement("p");
     messageElement.style.color = "black";
     messageElement.style.backgroundColor = this.colorToggle
-      ? "darkgray"
-      : "grey";
+      ? "snow"
+      : "whitesmoke";
     this.colorToggle = !this.colorToggle;
     let nameElement = document.createElement("b");
     nameElement.innerText = data.name;
